@@ -1,0 +1,6 @@
+/.idea
+*.log
+*.iml
+result_recipes/
+*.dot
+pn-buildlist
