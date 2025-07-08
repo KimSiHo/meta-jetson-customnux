@@ -1,0 +1,11 @@
+[Unit]
+Description=Perform initial Docker image load on first boot
+After=docker.service resize-rootfs.service
+Requires=docker.service resize-rootfs.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/sbin/initial-docker-load.sh
+
+[Install]
+WantedBy=multi-user.target
