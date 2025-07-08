@@ -1,0 +1,11 @@
+[Unit]
+Description=Resize root filesystem to fill partition
+# Run this service only once
+ConditionPathExists=!/etc/resize-rootfs.done
+
+[Service]
+Type=oneshot
+ExecStart=/usr/sbin/resize-rootfs.sh
+
+[Install]
+WantedBy=multi-user.target

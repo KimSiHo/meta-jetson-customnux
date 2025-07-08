@@ -1,0 +1,11 @@
+[Unit]
+Description=Vision AI Backend Service
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/vision_backend
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
