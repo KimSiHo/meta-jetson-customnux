@@ -1,0 +1,70 @@
+PROJECT_INSTALL += " \
+    zmq-sub \
+    vision-common-dev \
+"
+#jetson-inference
+
+FONT_INSTALL += " \
+    fontconfig-utils \
+"
+
+UTILITY_TOOLS = " \
+    fbgrab \
+    tmux \
+    tree \
+    curl \
+    tmate \
+    gptfdisk \
+    efibootmgr \
+"
+
+SETTINGS = " \
+    app-settings \
+    userspace-apps \
+"
+
+NETWORK_TOOLS = " \
+    nfs-utils \
+    nfs-mount \
+    ethtool \
+"
+
+DEBUG_TOOLS = " \
+    gdb \
+    strace \
+    systemd-analyze \
+"
+
+HARDWARE_TOOLS = " \
+    i2c-tools \
+    v4l-utils \
+    alsa-utils \
+    libgpiod \
+    libgpiod-tools \
+"
+
+# 개인 별 설정. 빌드 오류 발생하므로 제외 처리.
+PERSONAL_CRENDENTIAL_TOOLS = " \
+    remote-develop \
+"
+
+IMAGE_INSTALL += " \
+    ${UTILITY_TOOLS} \
+    ${SETTINGS} \
+    ${NETWORK_TOOLS} \
+    ${DEBUG_TOOLS} \
+    ${HARDWARE_TOOLS} \
+    ${PERSONAL_CRENDENTIAL_TOOLS} \
+"
+
+TOOLCHAIN_TARGET_TASK += " \
+    qtbase-dev \
+    cppzmq-dev \
+    nlohmann-json-dev \
+    spdlog-dev \
+    fmt-dev \
+"
+
+TOOLCHAIN_HOST_TASK += " \
+    nativesdk-packagegroup-qt5-toolchain-host \
+"
