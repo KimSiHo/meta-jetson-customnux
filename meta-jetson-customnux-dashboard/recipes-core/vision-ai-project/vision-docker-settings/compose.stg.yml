@@ -1,0 +1,21 @@
+volumes:
+  intellij-gateway-volume-backend:
+  intellij-gateway-volume-frontend:
+
+services:
+  vision-backend:
+    ports:
+      - "2222:2222"
+    volumes:
+      - /home/great/.ssh:/home/great/.ssh:ro
+      - /etc/asound.conf:/etc/asound.conf:ro
+      - /home/great/workspace:/home/great/workspace
+      - intellij-gateway-volume-backend:/home/great/.cache/JetBrains
+
+  vision-frontend:
+    ports:
+      - "2224:2222"
+    volumes:
+      - /home/great/.ssh:/home/great/.ssh:ro
+      - /home/great/workspace:/home/great/workspace
+      - intellij-gateway-volume-frontend:/home/great/.cache/JetBrains
