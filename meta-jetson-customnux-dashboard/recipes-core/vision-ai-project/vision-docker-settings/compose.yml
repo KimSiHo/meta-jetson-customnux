@@ -1,0 +1,33 @@
+volumes:
+  tmp-ipc-volume:
+
+services:
+  vision-backend:
+    image: jetson_vision_ai_backend/stg:latest
+    container_name: vision-backend
+    volumes:
+      - tmp-ipc-volume:/tmp
+      - /home/great/logs:/var/log/vision
+      - /tmp/argus_socket:/tmp/argus_socket
+      - /dev/shm:/dev/shm
+    devices:
+      - /dev/video0
+      - /dev/nvmap
+    runtime: nvidia
+
+  vision-frontend:
+    image: jetson_vision_ai_frontend/stg:latest
+    container_name: vision-frontend
+    volumes:
+      - tmp-ipc-volume:/tmp
+      - /home/great/logs:/var/log/vision
+      - /dev/dri:/dev/dri
+      - ${XDG_RUNTIME_DIR}/${WAYLAND_DISPLAY}:/tmp/${WAYLAND_DISPLAY}
+      - /dev/shm:/dev/shm
+    devices:
+      - /dev/video0
+    environment:
+      - WAYLAND_DISPLAY=${WAYLAND_DISPLAY}
+    depends_on:
+      - vision-backend
+    runtime: nvidia

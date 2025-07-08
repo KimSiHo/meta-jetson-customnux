@@ -1,0 +1,13 @@
+services:
+  vision-backend:
+    ports:
+      - "2222:22"
+    volumes:
+      - /home/great/.ssh/id_ed25519:/root/.ssh/id_ed25519:ro
+
+  vision-frontend:
+    ports:
+      - "2223:22"
+    volumes:
+      - /tmp/argus_socket:/tmp/argus_socket
+      - /home/great/.ssh/id_ed25519:/root/.ssh/id_ed25519:ro
