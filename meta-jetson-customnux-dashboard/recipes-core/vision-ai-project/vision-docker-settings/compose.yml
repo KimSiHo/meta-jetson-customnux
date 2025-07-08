@@ -1,0 +1,37 @@
+services:
+  vision-backend:
+    image: jetson_vision_ai_backend/stg:latest
+    container_name: vision-backend
+    volumes:
+      - /tmp:/tmp
+      - /dev/shm:/dev/shm
+      - /home/great/logs:/var/log/vision
+      - /var/run/dbus:/var/run/dbus
+      - ${XDG_RUNTIME_DIR}:${XDG_RUNTIME_DIR}
+      - /opt/assets:/opt/assets
+      - /home/great/.config/pulse:/home/great/.config/pulse:ro
+    devices:
+      - /dev/video0
+      - /dev/snd
+    environment:
+      - XDG_RUNTIME_DIR=${XDG_RUNTIME_DIR}
+    runtime: nvidia
+
+  vision-frontend:
+    image: jetson_vision_ai_frontend/stg:latest
+    container_name: vision-frontend
+    volumes:
+      - /tmp:/tmp
+      - /dev/shm:/dev/shm
+      - /home/great/logs:/var/log/vision
+      - ${XDG_RUNTIME_DIR}:${XDG_RUNTIME_DIR}
+    devices:
+      - /dev/video0
+    environment:
+      - XDG_RUNTIME_DIR=${XDG_RUNTIME_DIR}
+      - WAYLAND_DISPLAY=${WAYLAND_DISPLAY}
+      - NVIDIA_VISIBLE_DEVICES=all
+      - NVIDIA_DRIVER_CAPABILITIES=all
+    depends_on:
+      - vision-backend
+    runtime: nvidia

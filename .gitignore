@@ -1,0 +1,9 @@
+/.idea
+*.log
+*.iml
+result_recipes/
+*.dot
+pn-buildlist
+
+# personal remote develop settings
+meta-jetson-customnux-dashboard-dev/recipes-support/remote-develop/*

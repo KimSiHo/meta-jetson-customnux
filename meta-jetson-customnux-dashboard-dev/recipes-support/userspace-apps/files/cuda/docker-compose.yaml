@@ -1,0 +1,17 @@
+# docker-compose.yml
+version: '3.8'
+
+services:
+  cuda-dev:
+    image: nvcr.io/nvidia/l4t-cuda:12.2.12-devel
+    stdin_open: true  # -i
+    tty: true         # -t
+    volumes:
+      - .:/workspace
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [ gpu ]

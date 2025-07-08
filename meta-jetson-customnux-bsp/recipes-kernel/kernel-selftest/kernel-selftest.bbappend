@@ -1,0 +1,3 @@
+TEST_LIST += " \
+    filesystems \
+"
