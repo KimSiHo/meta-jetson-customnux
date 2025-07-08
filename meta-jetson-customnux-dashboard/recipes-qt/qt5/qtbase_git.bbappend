@@ -1,0 +1,2 @@
+PACKAGECONFIG_SYSTEM += "xkbcommon"
+PACKAGECONFIG_FONTS += "fontconfig"
